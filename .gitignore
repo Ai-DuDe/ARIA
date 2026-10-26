@@ -1,0 +1,11 @@
+# MediaPipe model file -- download separately (see README)
+hand_landmarker.task
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS junk
+.DS_Store
+Thumbs.db
