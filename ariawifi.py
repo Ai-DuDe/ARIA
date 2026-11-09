@@ -1,5 +1,5 @@
 """
-AIRA - ESP32 DevKit gesture-controlled hardware UI (WiFi version)
+ARIA - ESP32 DevKit gesture-controlled hardware UI (WiFi version)
 
 ----------------------------------------------------------------
 Responsibilities
@@ -9,7 +9,7 @@ PC SIDE:
     - Camera capture
     - MediaPipe hand tracking
     - Gesture recognition
-    - AIRA glass/neumorphic UI
+    - ARIA glass/neumorphic UI
     - WiFi (TCP) communication with ESP32 DevKit
 
 ESP32 SIDE:
@@ -24,11 +24,11 @@ GESTURE MAPPING
 Index fingertip:
     Cursor / hover / hit testing
 
-Index + Middle pinch:
+Thumb + Index pinch:
     Grab / drag a device pill
 
-Thumb + Index pinch:
-    Click
+Index + Middle pinch:
+    Click (open HUD / toggle device)
 
 ----------------------------------------------------------------
 DEVICES
@@ -1305,13 +1305,13 @@ class GestureController:
 
         self.link = link
 
-        # Index + Middle pinch -> drag a pill
+        # Thumb + Index pinch -> drag a pill
         self.drag_pinch = PinchDetector(
             DRAG_PINCH_ON,
             DRAG_PINCH_OFF
         )
 
-        # Thumb + Index pinch -> click / toggle
+        # Index + Middle pinch -> click / toggle
         self.click_pinch = PinchDetector(
             CLICK_PINCH_ON,
             CLICK_PINCH_OFF
@@ -1573,7 +1573,7 @@ def compute_ratios(lm):
     )
     hand_scale = max(hand_scale, 1e-5)
 
-    # Thumb + index tip distance  ->  CLICK gesture
+    # Thumb + index tip distance  ->  DRAG gesture
     thumb_index = (
         np.linalg.norm(
             landmark_px(lm, THUMB_TIP)
@@ -1582,7 +1582,7 @@ def compute_ratios(lm):
         / hand_scale
     )
 
-    # Index + middle tip distance  ->  DRAG gesture
+    # Index + middle tip distance  ->  CLICK gesture
     index_middle = (
         np.linalg.norm(
             landmark_px(lm, INDEX_TIP)
@@ -2583,7 +2583,7 @@ def main():
     # ---------------------------------------------------------------
 
     cv2.namedWindow(
-        "AIRA",
+        "ARIA",
         cv2.WINDOW_AUTOSIZE
     )
 
@@ -2748,7 +2748,7 @@ def main():
             # -------------------------------------------------------
 
             cv2.imshow(
-                "AIRA",
+                "ARIA",
                 canvas
             )
 

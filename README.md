@@ -23,7 +23,7 @@ Webcam → MediaPipe → Gesture Logic → TCP (WiFi) → ESP32 → Relay → Ap
 
 ## Demo
 
-> _Pinch index + middle to drag · Pinch thumb + index to click_
+> _Pinch thumb + index to drag · Pinch index + middle to click_
 
 ```
 [ Fan  ●]   [ Bulb ●]     ← live overlay on your webcam feed
@@ -134,8 +134,8 @@ You can test the full gesture UI and toggle logic without any physical hardware.
 | Gesture | Action |
 |---|---|
 | Index fingertip in frame | Cursor / hover |
-| **Index + Middle** pinch | **Drag** a device pill |
-| **Thumb + Index** pinch | **Click** — open HUD / toggle device |
+| **Thumb + Index** pinch | **Drag** a device pill |
+| **Index + Middle** pinch | **Click** — open HUD / toggle device |
 
 ---
 
